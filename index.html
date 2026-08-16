@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación - Cumpleaños de Camila</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🎉 Confirma tu asistencia</h1>
+            <p class="subtitle">Cumpleaños de Camila</p>
+
+            <form id="rsvpForm">
+                <!-- Nombre -->
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+
+                <!-- Restricciones alimentarias -->
+                <div class="form-group">
+                    <label>Restricciones alimentarias</label>
+                    <div class="checkboxes">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="Bajo sodio">
+                            <span>Bajo sodio</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="Vegano">
+                            <span>Vegano</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="Vegetariano">
+                            <span>Vegetariano</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="Sin gluten">
+                            <span>Sin gluten</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="restricciones" value="Sin lactosa">
+                            <span>Sin lactosa</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Otras restricciones -->
+                <div class="form-group">
+                    <label for="otras">Otras restricciones o alergias</label>
+                    <textarea id="otras" name="otras" placeholder="Especifica cualquier otra restricción (maní, frutos secos, etc.)" rows="3"></textarea>
+                </div>
+
+                <!-- Botón submit -->
+                <button type="submit" id="submitBtn" class="submit-btn">Confirmar asistencia</button>
+
+                <!-- Mensaje de estado -->
+                <div id="message" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
