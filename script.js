@@ -1,5 +1,5 @@
-// Reemplaza con la URL de tu Apps Script
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/d/{APPS_SCRIPT_ID}/usercopy/exec';
+// Google Apps Script endpoint
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbPn44Eao-vYuihgrCMVEuMlpkl8GTcsUrnOBGjJUqRAoWCtZjHyekB4mF8ROZBxjc/exec';
 
 const form = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('submitBtn');
