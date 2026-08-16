@@ -2,6 +2,16 @@
 
 🎉 App simple para confirmar asistencia al cumpleaños de Camila con registro de restricciones alimentarias.
 
+## ⚡ Quick Start
+
+### Google Sheet (Base de Datos)
+📊 **Link:** [Cumpleaños de Camila - Confirmaciones RSVP](https://docs.google.com/spreadsheets/d/1Y6RBoUUt0l_ZA9XjOFqCYDS36t99WB8frvuUGNXEXtM/edit)
+
+### Setup Guía Completa
+📋 **Link:** [Setup Guía Paso a Paso](https://docs.google.com/document/d/15FBzhp95UZkv4gsIwdkSEa0ulqU4vokj_tgNGHVCYdw/edit)
+
+---
+
 ## Características
 
 - ✅ Formulario responsive y mobile-friendly
@@ -19,83 +29,32 @@
 - Sin lactosa
 - Campo libre para otras restricciones/alergias
 
-## Setup - Paso a Paso
+## Setup - Paso a Paso Rápido
 
-### 1. Google Sheet + Apps Script
+### 1. Google Sheet (YA CREADA ✅)
+- Sheet lista: [Aquí](https://docs.google.com/spreadsheets/d/1Y6RBoUUt0l_ZA9XjOFqCYDS36t99WB8frvuUGNXEXtM/edit)
+- Agrega encabezados: Timestamp, Nombre, Restricciones, Otras Restricciones
 
-**Paso 1: Crear Google Sheet**
-1. Ve a https://sheets.google.com
-2. Crea una nueva Sheet
-3. Agrega estos encabezados en la primera fila:
-   - A1: `Timestamp`
-   - B1: `Nombre`
-   - C1: `Restricciones`
-   - D1: `Otras Restricciones`
+### 2. Google Apps Script
+1. Abre la Sheet
+2. Extensiones → Apps Script
+3. Copia el código de la [Guía](https://docs.google.com/document/d/15FBzhp95UZkv4gsIwdkSEa0ulqU4vokj_tgNGHVCYdw/edit)
+4. Deploy como Web App
+5. Copia la URL de deployment
 
-**Paso 2: Crear Apps Script**
-1. En la Sheet, ve a: Extensiones → Apps Script
-2. Elimina el código por defecto
-3. Copia y pega este código:
+### 3. Configurar script.js
+1. Abre: https://github.com/gonzalow/camila-birthday-rsvp/edit/main/script.js
+2. Reemplaza `{APPS_SCRIPT_ID}` con tu URL del paso anterior
+3. Commit
 
-```javascript
-function doPost(e) {
-  try {
-    const sheet = SpreadsheetApp.getActiveSheet();
-    const data = JSON.parse(e.postData.contents);
+### 4. GitHub Pages
+1. Settings → Pages
+2. Branch: main, Folder: root
+3. Save
 
-    const row = [
-      data.timestamp,
-      data.nombre,
-      data.restricciones.join(', '),
-      data.otras
-    ];
+✅ **Listo en 10 minutos**
 
-    sheet.appendRow(row);
-
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'success',
-      message: 'Confirmación registrada'
-    })).setMimeType(ContentService.MimeType.JSON);
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'error',
-      message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-```
-
-**Paso 3: Deploy como Web App**
-1. Click en el botón "Deploy" (arriba a la derecha)
-2. Selecciona "New deployment"
-3. Tipo: "Web app"
-4. Execute as: tu email
-5. Who has access: "Anyone"
-6. Click "Deploy"
-7. **Copia la URL que aparece** (algo como: `https://script.google.com/macros/d/...../usercopy/exec`)
-
-### 2. Configurar el Frontend
-
-1. Abre el archivo `script.js` de este repositorio
-2. Busca esta línea:
-```javascript
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/d/{APPS_SCRIPT_ID}/usercopy/exec';
-```
-
-3. Reemplaza `{APPS_SCRIPT_ID}` con la URL completa que copiaste en el paso anterior. Ejemplo:
-```javascript
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/d/1abc2def3ghi4jkl5mno6pqr7stu8vwx/usercopy/exec';
-```
-
-### 3. Activar GitHub Pages
-
-1. Ve a Settings del repositorio
-2. Busca "Pages" en la izquierda
-3. Source: "Deploy from a branch"
-4. Branch: "main" / Folder: "/ (root)"
-5. Click "Save"
-
-**Tu sitio estará disponible en:** `https://gonzalow.github.io/camila-birthday-rsvp/`
+---
 
 ## Estructura del Proyecto
 
@@ -108,60 +67,52 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/d/1abc2def3ghi4jkl5mno
 
 ## Cómo Usar
 
-1. Abre el link: `https://gonzalow.github.io/camila-birthday-rsvp/`
+1. Abre: `https://gonzalow.github.io/camila-birthday-rsvp/`
 2. Ingresa tu nombre
-3. Selecciona tus restricciones alimentarias (si aplica)
-4. Agrega otras restricciones o alergias si es necesario
-5. Click en "Confirmar asistencia"
-6. ¡Listo! Aparecerás en la Google Sheet automáticamente
+3. Selecciona restricciones (si aplica)
+4. Click "Confirmar asistencia"
+5. ¡Aparecerás en la Sheet automáticamente!
 
-## Para Malena - Ver las Confirmaciones
+## Para Malena - Ver Confirmaciones
 
-1. Abre la Google Sheet donde configuraste Apps Script
-2. Cada confirmación aparecerá como una nueva fila
-3. Puedes:
-   - Filtrar por restricciones
-   - Agregar columnas (confirmado, regalo, etc.)
-   - Exportar como CSV/Excel
+Abre la [Google Sheet](https://docs.google.com/spreadsheets/d/1Y6RBoUUt0l_ZA9XjOFqCYDS36t99WB8frvuUGNXEXtM/edit) donde verás:
+- Nombre de cada persona
+- Sus restricciones alimentarias
+- Otras restricciones especiales
+- Timestamp de confirmación
+
+Puedes:
+- Filtrar por restricciones
+- Agregar columnas (confirmado, regalo, etc.)
+- Exportar como CSV/Excel
 
 ## Desarrollo Local
 
-Si quieres probar en tu máquina:
-
 ```bash
-# Clonar
 git clone https://github.com/gonzalow/camila-birthday-rsvp.git
 cd camila-birthday-rsvp
-
-# Abrir en navegador
 open index.html
-# o simplemente arrastra index.html a tu navegador
 ```
 
 ## Notas Importantes
 
-- **Seguridad:** Los datos (nombre + restricciones) no contienen información sensible, es seguro compartir el link
-- **Link:** Comparte solo con invitados via WhatsApp, email, etc.
-- **Datos en tiempo real:** Malena verá las confirmaciones al instante en la Sheet
-- **Sin límite de usuarios:** Funciona para 100+ confirmaciones sin problemas
+- **Seguridad:** Datos no sensibles, link shareable por WhatsApp/email
+- **Datos en tiempo real:** Malena ve confirmaciones al instante
+- **Escalable:** Soporta 100+ confirmaciones sin problemas
 
 ## Troubleshooting
 
 ### El formulario no envía datos
-- Verifica que copiaste la URL correcta del Apps Script en `script.js`
-- Comprueba que el Apps Script está deployado como "Web app"
-- Verifica en la consola del navegador (F12) si hay errores
+→ Verifica que copiaste la URL correcta del Apps Script en `script.js`
 
 ### Aparece error "Forbidden"
-- Asegúrate que el Apps Script tiene permisos "Anyone" en el deployment
+→ Asegúrate que Apps Script tiene permisos "Anyone"
 
-### No veo los datos en la Sheet
-- Espera unos segundos después de enviar
-- Recarga la página
-- Verifica que Apps Script ejecutó correctamente (abre el Apps Script, mira los logs)
+### No veo datos en la Sheet
+→ Espera unos segundos, recarga la página
 
 ---
 
-¡Gracias por confirmar tu asistencia! 🎂
+📚 Ver [Guía Completa](https://docs.google.com/document/d/15FBzhp95UZkv4gsIwdkSEa0ulqU4vokj_tgNGHVCYdw/edit) para instrucciones detalladas con screenshots.
 
-Hecho con ❤️ para el cumpleaños de Camila
+Hecho con ❤️ para el cumpleaños de Camila 🎂
